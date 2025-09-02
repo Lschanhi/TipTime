@@ -74,6 +74,12 @@
                 Maximum="50"
                 ValueChanged="PorcentagemSlider_ValueChanged"
                 />
+            <Label 
+                x:Name="valorSliderlabel"
+                Text="0.00"
+                FontSize="18" 
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
 
