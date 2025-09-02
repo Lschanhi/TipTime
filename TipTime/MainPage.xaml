@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TipTime.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label
+                Text="Valor"/>
+            <Entry 
+                x:Name="ValorCompra"
+                Placeholder="Coloque o Valor da Compra"
+                Keyboard="Numeric"
+                TextChanged="ValorCompra_TextChanged"
+                />
+            <Label
+               Text="Gorjeta"
+               FontSize="18"
+                />
+            <Label 
+                
+               x:Name="valorGorjetaLabel"
+               Text="0.00"
+               FontSize="18" 
+               />
+            <Label
+                Text="Total"
+                FontSize="18"
+                            />
+            <Label 
+                   x:Name="valorTotalLabel"
+                   Text="0.00"
+                   FontSize="18" />
+            <HorizontalStackLayout
+                Spacing="10">
+            <Button 
+                x:Name="Porcentagem15Btn"
+                Text="15%"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="Porcentagem15Btn_Clicked"
+                />
+            <Button 
+                x:Name="Porcentagem20Btn"
+                Text="20%"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="Porcentagem20Btn_Clicked"
+                />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout 
+                Spacing="10">
+            <Button 
+                x:Name="ArredondarCimaBtn"
+                Text="Arredondar para Cima"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="ArredondarCimaBtn_Clicked"
+                />
+            <Button 
+                x:Name="ArredondarBaixoBtn"
+                Text="Arredondar para Baixo"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="ArredondarBaixoBtn_Clicked"
+                />
+            </HorizontalStackLayout>
+
+            <Slider 
+                x:Name="PorcentagemSlider"
+                Minimum="0"
+                Maximum="50"
+                ValueChanged="PorcentagemSlider_ValueChanged"
+                />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
