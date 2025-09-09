@@ -2,92 +2,76 @@
 {
     public partial class MainPage : ContentPage
     {
-        private double valorTemp;
+        private double valorTemp;     // valor da compra
+        private double valorGorjeta;  // valor da gorjeta
+        private double valorTotal;    // valor total (compra + gorjeta)
 
         public MainPage()
         {
             InitializeComponent();
-            
+            PorcentagemSlider.Value = 17;
+            CalcularTotal(PorcentagemSlider.Value);
         }
 
-       private void ValorCompra_TextChanged(object sender, TextChangedEventArgs e)
+        // Quando o usuário digitar o valor da compra
+        private void ValorCompra_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (double.TryParse(ValorCompra.Text, out double valor))
-            {
+            if (double.TryParse(valorCompra.Text, out double valor))
                 valorTemp = valor;
-            }
             else
-            {
                 valorTemp = 0;
-            }
-       
 
-
+            CalcularTotal(PorcentagemSlider.Value);
         }
-       
 
+        // Quando mudar a porcentagem no slider
+        private void PorcentagemSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            CalcularTotal(e.NewValue);
+        }
 
+        // Botões de gorjeta fixa
         private void Porcentagem15Btn_Clicked(object sender, EventArgs e)
         {
-              
             PorcentagemSlider.Value = 15;
-            double total = valorTemp * 0.15;
-            double soma = valorTemp + total;
-            valorGorjetaLabel.Text = $"Valor da gorjeta:{total:C2}";
-            valorTotalLabel.Text = $"Valor da gorjeta:{soma:C2}";
-
+            CalcularTotal(15);
         }
 
         private void Porcentagem20Btn_Clicked(object sender, EventArgs e)
         {
-            
             PorcentagemSlider.Value = 20;
-            double total = valorTemp * 0.20;
-            double soma = valorTemp + total;
-            valorGorjetaLabel.Text = $"Valor da gorjeta:{total:C2}";
-            valorTotalLabel.Text = $"Valor Total da Comanda:{soma:C2}";
+            CalcularTotal(20);
         }
 
-        private void ArredondarCimaBtn_Clicked(object sender, EventArgs e)
-        {   
-            
-            double arredondadoParaCima = Math.Ceiling(PorcentagemSlider.Value);
-            double total = valorTemp * arredondadoParaCima;
-            double soma = total + valorTemp;
-            valorGorjetaLabel.Text = $"Valor da gorjeta:{total:C2}";
-            valorTotalLabel.Text = $"Valor Total da Comanda:{soma:C2}";
-            
+        // Método central que calcula gorjeta e total
+        private void CalcularTotal(double porcentagem)
+        {
+            valorGorjeta = valorTemp * (porcentagem / 100);
+            valorTotal = valorTemp + valorGorjeta;
 
+            valorGorjetaLabel.Text = $"Valor da gorjeta: {valorGorjeta:C2}";
+            valorTotalLabel.Text = $"Valor Total da Comanda: {valorTotal:C2}";
+            valorSliderLabel.Text = $"{porcentagem:F2}%";
+        }
+
+        // Botões de arredondamento
+        private void ArredondarCimaBtn_Clicked(object sender, EventArgs e)
+        {
+            double cima = Math.Ceiling(valorTotal / 5)*5;
+
+            valorTotalLabel.Text = $"Valor Total da Comanda: {cima:C2}";
+            valorSliderLabel.Text = $"{PorcentagemSlider.Value:F2}%";
         }
 
         private void ArredondarBaixoBtn_Clicked(object sender, EventArgs e)
         {
-            
-               double valor = Convert.ToDouble(valorTotalLabel.Text);
-                double baixo = (valor/5)*5;
-                valorTotalLabel.Text = baixo.ToString("c");
+            double baixo = Math.Floor(valorTotal / 5) * 5;
 
+            valorTotalLabel.Text = $"Valor Total da Comanda: {baixo:C2}";
+            valorSliderLabel.Text = $"{PorcentagemSlider.Value:F2}%";
         }
 
-        private void PorcentagemSlider_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            try {
-
-               
-                double valor = PorcentagemSlider.Value;
-                double total = valorTemp * (valor / 100);
-                double soma = valorTemp + total;
-                valorGorjetaLabel.Text = $"Valor Total da Comanda: {total:C2}";
-                valorTotalLabel.Text = $"Valor Total da Comanda: {soma:C2}";
-                valorSliderLabel.Text = $"{valor:F2}";
-            }
-            catch(Exception ex) 
-            {
-                Console.WriteLine(ex.ToString());
-            }
-        }
-
-     
+    
     }
 
 }

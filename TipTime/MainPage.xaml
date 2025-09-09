@@ -10,7 +10,7 @@
             <Label
                 Text="Valor"/>
             <Entry 
-                x:Name="ValorCompra"
+                x:Name="valorCompra"
                 Placeholder="Coloque o Valor da Compra"
                 Keyboard="Numeric"
                 TextChanged="ValorCompra_TextChanged"
