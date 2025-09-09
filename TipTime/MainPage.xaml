@@ -54,14 +54,14 @@
                 Spacing="10">
             <Button 
                 x:Name="ArredondarCimaBtn"
-                Text="Arredondar para Cima"
+                Text="↑ %"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Clicked="ArredondarCimaBtn_Clicked"
                 />
             <Button 
                 x:Name="ArredondarBaixoBtn"
-                Text="Arredondar para Baixo"
+                Text="↓ %"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Clicked="ArredondarBaixoBtn_Clicked"
@@ -75,11 +75,12 @@
                 ValueChanged="PorcentagemSlider_ValueChanged"
                 />
             <Label 
-                x:Name="valorSliderlabel"
+                x:Name="valorSliderLabel"
                 Text="0.00"
                 FontSize="18" 
                 HorizontalOptions="Center"
-                VerticalOptions="Center"/>
+                VerticalOptions="Center"
+                />
         </VerticalStackLayout>
     </ScrollView>
 
