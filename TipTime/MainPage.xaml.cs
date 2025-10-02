@@ -57,7 +57,7 @@
         // Botões de arredondamento
         private void ArredondarCimaBtn_Clicked(object sender, EventArgs e)
         {
-            double cima = Math.Ceiling(valorTotal / 5)*5;
+            double cima = Math.Ceiling(valorTotal);
 
             valorTotalLabel.Text = $"Valor Total da Comanda: {cima:C2}";
             valorSliderLabel.Text = $"{PorcentagemSlider.Value:F2}%";
@@ -65,7 +65,7 @@
 
         private void ArredondarBaixoBtn_Clicked(object sender, EventArgs e)
         {
-            double baixo = Math.Floor(valorTotal / 5) * 5;
+            double baixo = Math.Floor(valorTotal) ;
 
             valorTotalLabel.Text = $"Valor Total da Comanda: {baixo:C2}";
             valorSliderLabel.Text = $"{PorcentagemSlider.Value:F2}%";
